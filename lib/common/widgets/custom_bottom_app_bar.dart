@@ -9,6 +9,7 @@ class CustomBottomAppBar extends StatefulWidget {
     Key? key,
     this.selectedItemColor,
     required this.children,
+    // esse assert com essa regra, serve para obrigar o construtor ter 5 objetos na lista...
   })  : assert(children.length == 5, 'children.length must be 5'),
         super(key: key);
 
@@ -22,13 +23,13 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      // CircularNotchedRectangle Serve para adptar o BottomAppBar no FloatingActionButton
       shape: const CircularNotchedRectangle(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: widget.children.map(
           (item) {
-            final currentItem =
-                widget.children.indexOf(item) == _selectedItemIndex;
+            final currentItem = widget.children.indexOf(item) == _selectedItemIndex;
             return Expanded(
               child: InkWell(
                 onTap: item.onPressed,
@@ -39,9 +40,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: Icon(
                     currentItem ? item.primaryIcon : item.secondaryIcon,
-                    color: currentItem
-                        ? widget.selectedItemColor
-                        : AppColors.lightGrey,
+                    color: currentItem ? widget.selectedItemColor : AppColors.lightGrey,
                   ),
                 ),
               ),

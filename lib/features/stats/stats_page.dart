@@ -10,8 +10,10 @@ class StatsPage extends StatefulWidget {
   State<StatsPage> createState() => _StatsPageState();
 }
 
-class _StatsPageState extends State<StatsPage>
-    with AutomaticKeepAliveClientMixin<StatsPage> {
+class _StatsPageState extends State<StatsPage> with AutomaticKeepAliveClientMixin<StatsPage> {
+  // Eu faço um with AutomaticKeepAliveClientMixin e sobrescrevo o método
+  // get wantKeepAlive retornando true, para que a page não fique sendo carregada
+  // toda vez que eu entrar e sair dela...
   @override
   bool get wantKeepAlive => true;
 
