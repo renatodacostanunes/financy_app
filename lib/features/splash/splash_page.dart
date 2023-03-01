@@ -24,6 +24,8 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => Sizes.init(context));
+    // aqui eu estou pegando tamanhos de altura e largura da tela e adicionando
+    // na minha classe Sizes...
 
     _splashController.isUserLogged();
     _splashController.addListener(() {
