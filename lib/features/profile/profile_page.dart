@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../locator.dart';
+import '../../services/auth_service.dart';
+import '../../services/secure_storage.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -15,9 +19,24 @@ class _ProfilePageState extends State<ProfilePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text("Profile"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Profile"),
+            TextButton(
+              onPressed: () async {
+                await locator.get<AuthService>().signOut();
+                await const SecureStorage().deleteAll();
+                if (mounted) {
+                  Navigator.popUntil(context, ModalRoute.withName('/'));
+                }
+              },
+              child: const Text("Logout"),
+            )
+          ],
+        ),
       ),
     );
   }
