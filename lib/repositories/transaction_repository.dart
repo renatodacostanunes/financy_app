@@ -1,5 +1,7 @@
 import '../common/models/transaction_model.dart';
 
+// O padrão repository é uma intermediação entre a fonte dos nossos dados (datasource)
+// e o nosso cliente (controller, view)
 abstract class TransactionRepository {
   Future<void> addTransaction();
   Future<List<TransactionModel>> getAllTransactions();
@@ -25,9 +27,7 @@ class TransactionRepositoryImpl implements TransactionRepository {
       TransactionModel(
         title: 'Dinner',
         value: -50,
-        date: DateTime.now()
-            .subtract(const Duration(days: 7))
-            .millisecondsSinceEpoch,
+        date: DateTime.now().subtract(const Duration(days: 7)).millisecondsSinceEpoch,
       ),
     ];
   }
